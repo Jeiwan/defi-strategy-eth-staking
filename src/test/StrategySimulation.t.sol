@@ -5,7 +5,7 @@ import "ds-test/test.sol";
 import {Strategy} from "../Strategy.sol";
 import {IAAVE, IERC20, VariableDebtToken} from "../interfaces.sol";
 
-contract StrategyTest is DSTest {
+contract StrategySimulationTest is DSTest {
     address constant aaveAddress = 0x7d2768dE32b0b80b7a3454c06BdAc94A69DDc7A9;
     address constant variableDebtWethAddress =
         0xF63B34710400CAd3e044cFfDcAb00a0f32E33eCf;
