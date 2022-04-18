@@ -30,7 +30,6 @@ contract StrategySimulationTest is DSTest {
         tokens[0] = wethAddress;
 
         uint256[] memory amounts = new uint256[](1);
-
         amounts[0] = flashLoanFunds;
 
         s.go{value: 1 ether}(tokens, amounts);

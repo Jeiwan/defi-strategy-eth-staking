@@ -7,9 +7,6 @@ contract Strategy {
     error NotBalancer();
     error NotOwner();
 
-    uint256 constant funds = 1 ether;
-    uint256 constant flashLoanFunds = (funds * 230) / 100;
-
     address constant aaveAddress = 0x7d2768dE32b0b80b7a3454c06BdAc94A69DDc7A9;
     address constant balancerAddress =
         0xBA12222222228d8Ba445958a75a0704d566BF2C8;
@@ -44,12 +41,13 @@ contract Strategy {
 
         IERC20 loanToken = tokens[0];
         uint256 loanAmount = amounts[0];
+        uint256 ownFunds = address(this).balance;
 
         // Unwrap WETH
         IWETH(wethAddress).withdraw(loanAmount);
 
         // Stake ETH
-        ILido(lidoAddress).submit{value: funds + flashLoanFunds}(address(0x0));
+        ILido(lidoAddress).submit{value: ownFunds + loanAmount}(address(0x0));
         uint256 stethBalance = IERC20(stethAddress).balanceOf(address(this));
 
         // Deposit stETH
