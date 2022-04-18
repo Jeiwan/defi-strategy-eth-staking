@@ -9,6 +9,10 @@ contract StrategySimulationTest is DSTest {
     address constant aaveAddress = 0x7d2768dE32b0b80b7a3454c06BdAc94A69DDc7A9;
     address constant variableDebtWethAddress =
         0xF63B34710400CAd3e044cFfDcAb00a0f32E33eCf;
+    address constant wethAddress = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
+
+    uint256 constant funds = 1 ether;
+    uint256 constant flashLoanFunds = (funds * 230) / 100;
 
     Strategy s;
 
@@ -22,7 +26,14 @@ contract StrategySimulationTest is DSTest {
             3 ether
         );
 
-        s.go{value: 1 ether}();
+        address[] memory tokens = new address[](1);
+        tokens[0] = wethAddress;
+
+        uint256[] memory amounts = new uint256[](1);
+
+        amounts[0] = flashLoanFunds;
+
+        s.go{value: 1 ether}(tokens, amounts);
 
         (
             uint256 totalCollateralETH,

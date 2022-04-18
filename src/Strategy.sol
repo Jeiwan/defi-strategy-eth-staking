@@ -23,14 +23,8 @@ contract Strategy {
         owner = msg.sender;
     }
 
-    function go() public payable {
+    function go(address[] calldata tokens, uint256[] calldata amounts) public payable {
         if (msg.sender != owner) revert NotOwner();
-
-        address[] memory tokens = new address[](1);
-        tokens[0] = wethAddress;
-
-        uint256[] memory amounts = new uint256[](1);
-        amounts[0] = flashLoanFunds;
 
         IBalancer(balancerAddress).flashLoan(
             address(this),
