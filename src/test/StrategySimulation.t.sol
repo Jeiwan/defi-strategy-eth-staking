@@ -35,13 +35,13 @@ contract StrategySimulationTest is DSTest {
 
         assertEq(
             totalCollateralETH,
-            3.298112774422300227 ether,
+            3.296866859883764637 ether,
             "invalid total collateral"
         );
         assertEq(totalDebtETH, 2.3 ether, "invalid total debt");
         assertEq(
             availableBorrowsETH,
-            0.008678942095610159 ether,
+            0.007806801918635246 ether,
             "invalid available borrows ETH"
         );
         assertEq(
@@ -52,7 +52,7 @@ contract StrategySimulationTest is DSTest {
         assertEq(ltv, 7000, "invalid LTV");
         assertEq(
             healthFactor,
-            1.07547155687683703 ether,
+            1.075065280396879773 ether,
             "invalid health factor"
         );
     }
