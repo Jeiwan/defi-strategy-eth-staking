@@ -41,10 +41,10 @@ contract Strategy {
     }
 
     function receiveFlashLoan(
-        IERC20[] memory tokens,
-        uint256[] memory amounts,
-        uint256[] memory feeAmounts,
-        bytes memory userData
+        IERC20[] calldata tokens,
+        uint256[] calldata amounts,
+        uint256[] calldata feeAmounts,
+        bytes calldata userData
     ) public payable {
         if (msg.sender != balancerAddress) revert NotBalancer();
 
